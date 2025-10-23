@@ -45,7 +45,15 @@ export const NoteCard = ({ note, className, style }: NoteCardProps) => {
       
       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
         <Clock className="w-3 h-3" />
-        <span className="bg-gradient-to-b from-white/70 to-white/50 bg-clip-text text-transparent">{new Date(note.createdAt).toLocaleDateString("ru-RU")}</span>
+        <span className="bg-gradient-to-b from-white/70 to-white/50 bg-clip-text text-transparent">
+          {new Date(note.createdAt).toLocaleDateString("ru-RU", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          })}
+        </span>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NoteCard } from "@/components/NoteCard";
+import { CreateNoteDialog } from "@/components/CreateNoteDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,6 +53,7 @@ const Dashboard = () => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userEmail, setUserEmail] = useState<string>("");
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -96,6 +98,33 @@ const Dashboard = () => {
     navigate("/auth");
   };
 
+  const handleCreateNote = async (title: string, content: string) => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) {
+      toast.error("Необходимо войти в систему");
+      return;
+    }
+
+    const { error } = await supabase
+      .from("notes")
+      .insert([{
+        user_id: session.user.id,
+        title: title,
+        content: content,
+        color: "blue",
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }]);
+
+    if (error) {
+      toast.error("Ошибка создания заметки");
+      console.error(error);
+    } else {
+      toast.success("Заметка создана");
+      loadNotes();
+    }
+  };
+
   const filteredNotes = notes.filter(
     (note) =>
       note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -136,30 +165,7 @@ const Dashboard = () => {
               <Button 
                 size="sm" 
                 className="gap-2 h-9"
-                onClick={async () => {
-                  const { data: { session } } = await supabase.auth.getSession();
-                  if (!session?.user) {
-                    toast.error("Необходимо войти в систему");
-                    return;
-                  }
-                  
-                  const { error } = await supabase
-                    .from("notes")
-                    .insert([{
-                      user_id: session.user.id,
-                      title: "Новая заметка",
-                      content: "Начните писать...",
-                      color: "blue"
-                    }]);
-                  
-                  if (error) {
-                    toast.error("Ошибка создания заметки");
-                    console.error(error);
-                  } else {
-                    toast.success("Заметка создана");
-                    loadNotes();
-                  }
-                }}
+                onClick={() => setIsCreateDialogOpen(true)}
               >
                 <Plus className="w-4 h-4" />
                 <span className="hidden sm:inline">Создать</span>
@@ -216,7 +222,7 @@ const Dashboard = () => {
                   id: note.id,
                   title: note.title,
                   content: note.content || "",
-                  createdAt: new Date(note.created_at).toLocaleDateString("ru-RU"),
+                  createdAt: note.created_at,
                   color: note.color || "blue",
                 }}
                 style={{
@@ -255,6 +261,12 @@ const Dashboard = () => {
           </div>
         )}
       </main>
+
+      <CreateNoteDialog
+        open={isCreateDialogOpen}
+        onOpenChange={setIsCreateDialogOpen}
+        onCreateNote={handleCreateNote}
+      />
     </div>
   );
 };
