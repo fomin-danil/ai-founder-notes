@@ -24,15 +24,15 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background dark flex flex-col">
       {/* Header */}
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-4">
+      <header className="border-b border-border/40">
+        <div className="container mx-auto px-4 md:px-8 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
+            <div className="w-7 h-7 rounded-md bg-foreground flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-background" />
             </div>
-            <span className="text-xl font-semibold">NotesAI</span>
+            <span className="text-base font-semibold">NotesAI</span>
           </Link>
         </div>
       </header>
@@ -40,15 +40,15 @@ const Auth = () => {
       {/* Auth Form */}
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md animate-fade-in-up">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2">Добро пожаловать</h1>
-            <p className="text-muted-foreground">
+          <div className="text-center mb-10">
+            <h1 className="text-3xl font-bold tracking-tight mb-2">Добро пожаловать</h1>
+            <p className="text-sm text-muted-foreground">
               Войдите или создайте новый аккаунт
             </p>
           </div>
 
           <Tabs defaultValue="login" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
+            <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Вход</TabsTrigger>
               <TabsTrigger value="signup">Регистрация</TabsTrigger>
             </TabsList>
@@ -56,37 +56,28 @@ const Auth = () => {
             <TabsContent value="login">
               <form onSubmit={(e) => handleAuth(e, "login")} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="login-email">Email</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="login-email"
-                      type="email"
-                      placeholder="your@email.com"
-                      className="pl-10"
-                      required
-                    />
-                  </div>
+                  <Label htmlFor="login-email" className="text-sm">Email</Label>
+                  <Input
+                    id="login-email"
+                    type="email"
+                    placeholder="your@email.com"
+                    required
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="login-password">Пароль</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="login-password"
-                      type="password"
-                      placeholder="••••••••"
-                      className="pl-10"
-                      required
-                    />
-                  </div>
+                  <Label htmlFor="login-password" className="text-sm">Пароль</Label>
+                  <Input
+                    id="login-password"
+                    type="password"
+                    placeholder="••••••••"
+                    required
+                  />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full"
-                  size="lg"
+                  className="w-full h-10"
                   disabled={isLoading}
                 >
                   {isLoading ? "Загрузка..." : "Войти"}
@@ -97,7 +88,7 @@ const Auth = () => {
             <TabsContent value="signup">
               <form onSubmit={(e) => handleAuth(e, "signup")} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="signup-name">Имя</Label>
+                  <Label htmlFor="signup-name" className="text-sm">Имя</Label>
                   <Input
                     id="signup-name"
                     type="text"
@@ -107,38 +98,29 @@ const Auth = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="signup-email"
-                      type="email"
-                      placeholder="your@email.com"
-                      className="pl-10"
-                      required
-                    />
-                  </div>
+                  <Label htmlFor="signup-email" className="text-sm">Email</Label>
+                  <Input
+                    id="signup-email"
+                    type="email"
+                    placeholder="your@email.com"
+                    required
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-password">Пароль</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="signup-password"
-                      type="password"
-                      placeholder="••••••••"
-                      className="pl-10"
-                      required
-                      minLength={8}
-                    />
-                  </div>
+                  <Label htmlFor="signup-password" className="text-sm">Пароль</Label>
+                  <Input
+                    id="signup-password"
+                    type="password"
+                    placeholder="••••••••"
+                    required
+                    minLength={8}
+                  />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full"
-                  size="lg"
+                  className="w-full h-10"
                   disabled={isLoading}
                 >
                   {isLoading ? "Загрузка..." : "Создать аккаунт"}
@@ -147,7 +129,7 @@ const Auth = () => {
             </TabsContent>
           </Tabs>
 
-          <div className="mt-6 text-center text-sm text-muted-foreground">
+          <div className="mt-6 text-center text-xs text-muted-foreground">
             <p>Продолжая, вы соглашаетесь с условиями использования</p>
           </div>
         </div>

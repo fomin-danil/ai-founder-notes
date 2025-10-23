@@ -54,37 +54,37 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 220 15% 8%;
-    --foreground: 220 13% 95%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 220 15% 10%;
-    --card-foreground: 220 13% 95%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 220 15% 10%;
-    --popover-foreground: 220 13% 95%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 262 80% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 10% 3.9%;
 
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 220 13% 95%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 9% 60%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 262 80% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 262 80% 60%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
 
     /* AI градиенты темная тема */
     --gradient-ai: linear-gradient(135deg, hsl(262 80% 60%), hsl(280 70% 65%));
-    --gradient-card: linear-gradient(180deg, hsl(220 15% 11%), hsl(220 15% 9%));
+    --gradient-card: linear-gradient(180deg, hsl(240 3.7% 15.9%), hsl(240 10% 3.9%));
     
     /* Тени темная тема */
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);

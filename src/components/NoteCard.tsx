@@ -15,28 +15,34 @@ interface NoteCardProps {
   style?: React.CSSProperties;
 }
 
+const colorClasses = {
+  blue: "border-l-blue-500",
+  purple: "border-l-purple-500",
+  green: "border-l-green-500",
+  orange: "border-l-orange-500",
+};
+
 export const NoteCard = ({ note, className, style }: NoteCardProps) => {
   return (
     <div
       className={cn(
-        "group p-6 rounded-2xl border border-border bg-card hover:border-primary/50",
-        "transition-all duration-300 hover:shadow-lg cursor-pointer",
+        "group relative rounded-xl border border-border bg-card p-6 border-l-4",
+        "transition-all duration-200 hover:bg-accent/50 cursor-pointer",
         "animate-fade-in",
+        colorClasses[note.color as keyof typeof colorClasses],
         className
       )}
       style={style}
     >
-      <div className={cn("w-full h-2 rounded-full mb-4 bg-gradient-to-r", note.color)} />
-      
-      <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+      <h3 className="text-base font-semibold mb-2 line-clamp-2">
         {note.title}
       </h3>
       
-      <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
         {note.content}
       </p>
       
-      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
         <Clock className="w-3 h-3" />
         <span>{new Date(note.createdAt).toLocaleDateString("ru-RU")}</span>
       </div>
