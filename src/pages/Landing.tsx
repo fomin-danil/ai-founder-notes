@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DisplayCards } from "@/components/DisplayCards";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { AnimatedBackgroundAlt } from "@/components/AnimatedBackgroundAlt";
 
 const Landing = () => {
   return (
@@ -79,9 +78,8 @@ const Landing = () => {
       </section>
 
       {/* Full Screen Features Section */}
-      <section className="relative min-h-screen flex items-center py-16 md:py-24 bg-muted/30">
-        <AnimatedBackgroundAlt />
-        <div className="relative z-10 container mx-auto px-4 md:px-8">
+      <section className="min-h-screen flex items-center py-16 md:py-24 bg-muted/30">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             {/* Left side - Animated Display Cards */}
             <div className="order-2 lg:order-1 animate-fade-in">
