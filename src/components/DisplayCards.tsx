@@ -44,30 +44,31 @@ export const DisplayCards = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[500px] flex items-center justify-center">
-      <div className="relative w-full max-w-md">
+    <div className="relative w-full h-[500px] flex items-center justify-center px-4">
+      <div className="relative w-full max-w-md h-[400px]">
         {sampleNotes.map((note, index) => {
           const position = (index - activeIndex + sampleNotes.length) % sampleNotes.length;
-          const isActive = position === 0;
-          const isNext = position === 1;
-          const isPrev = position === sampleNotes.length - 1;
+          
+          // Only show first 3 cards in stack
+          if (position > 2) return null;
           
           return (
-            <NoteCard
+            <div
               key={note.id}
-              note={note}
-              className="absolute inset-0 transition-all duration-700 ease-out"
+              className="absolute top-0 left-0 w-full transition-all duration-700 ease-out"
               style={{
                 transform: `
-                  translateX(${position === 0 ? '0' : position === 1 ? '20px' : position === 2 ? '40px' : '60px'})
-                  translateY(${position === 0 ? '0' : position === 1 ? '20px' : position === 2 ? '40px' : '60px'})
-                  scale(${position === 0 ? '1' : position === 1 ? '0.95' : position === 2 ? '0.9' : '0.85'})
+                  translateX(${position * 12}px)
+                  translateY(${position * 12}px)
+                  scale(${1 - position * 0.05})
                 `,
-                opacity: position <= 2 ? 1 - position * 0.25 : 0,
-                zIndex: sampleNotes.length - position,
-                pointerEvents: isActive ? 'auto' : 'none',
+                opacity: 1 - position * 0.15,
+                zIndex: 10 - position,
+                pointerEvents: position === 0 ? 'auto' : 'none',
               }}
-            />
+            >
+              <NoteCard note={note} />
+            </div>
           );
         })}
       </div>
