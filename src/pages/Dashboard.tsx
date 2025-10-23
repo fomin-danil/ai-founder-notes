@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NoteCard } from "@/components/NoteCard";
 import { CreateNoteDialog } from "@/components/CreateNoteDialog";
+import { WeeklySummaryDialog } from "@/components/WeeklySummaryDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,6 +55,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userEmail, setUserEmail] = useState<string>("");
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isSummaryDialogOpen, setIsSummaryDialogOpen] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -200,12 +202,22 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 md:px-8 py-8">
-        {/* AI Assistant Badge */}
-        <div className="mb-6">
+        {/* AI Assistant Badge and Weekly Summary */}
+        <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <Badge variant="secondary" className="px-3 py-1.5 text-xs">
             <Sparkles className="w-3 h-3 mr-1.5" />
             AI-ассистент готов помочь со структурированием и улучшением заметок
           </Badge>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsSummaryDialogOpen(true)}
+            className="gap-2"
+          >
+            <Sparkles className="w-4 h-4" />
+            Сгенерировать ИИ-саммари за неделю
+          </Button>
         </div>
 
         {/* Notes Grid - Bento Layout */}
@@ -266,6 +278,11 @@ const Dashboard = () => {
         open={isCreateDialogOpen}
         onOpenChange={setIsCreateDialogOpen}
         onCreateNote={handleCreateNote}
+      />
+      
+      <WeeklySummaryDialog
+        open={isSummaryDialogOpen}
+        onOpenChange={setIsSummaryDialogOpen}
       />
     </div>
   );

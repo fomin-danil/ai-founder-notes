@@ -1,1 +1,4 @@
 project_id = "gsugvazyxqsmfzkurhis"
+
+[functions.generate-weekly-summary]
+verify_jwt = true
