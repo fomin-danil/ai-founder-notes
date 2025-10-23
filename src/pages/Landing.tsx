@@ -36,7 +36,7 @@ const Landing = () => {
                 <Button variant="light-gradient" size="sm">Зарегистрироваться</Button>
               </Link>
               <Link to="/auth">
-                <Button size="sm">Начать</Button>
+                <Button size="sm">Войти</Button>
               </Link>
             </div>
           </div>
