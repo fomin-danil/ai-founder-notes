@@ -36,12 +36,12 @@ export const CreateNoteDialog = ({ open, onOpenChange, onCreateNote }: CreateNot
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] bg-card border-border shadow-[0_0_30px_rgba(255,255,255,0.1)]">
         <DialogHeader>
           <DialogTitle className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">
             Создать заметку
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-muted-foreground">
             Заполните поля для создания новой заметки
           </DialogDescription>
         </DialogHeader>
