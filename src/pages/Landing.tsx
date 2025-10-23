@@ -3,6 +3,7 @@ import { Sparkles, BookOpen, Brain, Zap, ArrowRight, CheckCircle2 } from "lucide
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DisplayCards } from "@/components/DisplayCards";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 
 const Landing = () => {
   return (
@@ -43,8 +44,9 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 md:px-8 pt-24 pb-16 md:pt-32 md:pb-24">
-        <div className="max-w-5xl mx-auto text-center animate-fade-in-up">
+      <section className="relative container mx-auto px-4 md:px-8 pt-24 pb-16 md:pt-32 md:pb-24">
+        <AnimatedBackground />
+        <div className="relative z-10 max-w-5xl mx-auto text-center animate-fade-in-up">
           <Badge variant="secondary" className="mb-6 px-3 py-1 text-xs">
             <Sparkles className="w-3 h-3 mr-1.5" />
             Новые AI-функции: структурирование и генерация идей
