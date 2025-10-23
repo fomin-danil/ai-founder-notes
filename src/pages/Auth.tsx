@@ -1,26 +1,71 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Sparkles, Mail, Lock } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Auth = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleAuth = async (e: React.FormEvent<HTMLFormElement>, type: "login" | "signup") => {
+  useEffect(() => {
+    // Проверяем, не авторизован ли пользователь уже
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        navigate("/dashboard");
+      }
+    });
+  }, [navigate]);
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Имитация авторизации (заглушка)
-    setTimeout(() => {
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      toast.error(error.message);
       setIsLoading(false);
-      toast.success(type === "login" ? "Вход выполнен успешно!" : "Аккаунт создан!");
+    } else {
+      toast.success("Вход выполнен успешно!");
       navigate("/dashboard");
-    }, 1000);
+    }
+  };
+
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/dashboard`,
+      },
+    });
+
+    if (error) {
+      toast.error(error.message);
+      setIsLoading(false);
+    } else {
+      toast.success("Аккаунт создан! Войдите в систему.");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -54,11 +99,12 @@ const Auth = () => {
             </TabsList>
 
             <TabsContent value="login">
-              <form onSubmit={(e) => handleAuth(e, "login")} className="space-y-4">
+              <form onSubmit={handleLogin} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="login-email" className="text-sm">Email</Label>
                   <Input
                     id="login-email"
+                    name="email"
                     type="email"
                     placeholder="your@email.com"
                     required
@@ -69,6 +115,7 @@ const Auth = () => {
                   <Label htmlFor="login-password" className="text-sm">Пароль</Label>
                   <Input
                     id="login-password"
+                    name="password"
                     type="password"
                     placeholder="••••••••"
                     required
@@ -86,21 +133,12 @@ const Auth = () => {
             </TabsContent>
 
             <TabsContent value="signup">
-              <form onSubmit={(e) => handleAuth(e, "signup")} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="signup-name" className="text-sm">Имя</Label>
-                  <Input
-                    id="signup-name"
-                    type="text"
-                    placeholder="Иван Иванов"
-                    required
-                  />
-                </div>
-
+              <form onSubmit={handleSignup} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="signup-email" className="text-sm">Email</Label>
                   <Input
                     id="signup-email"
+                    name="email"
                     type="email"
                     placeholder="your@email.com"
                     required
@@ -111,10 +149,11 @@ const Auth = () => {
                   <Label htmlFor="signup-password" className="text-sm">Пароль</Label>
                   <Input
                     id="signup-password"
+                    name="password"
                     type="password"
                     placeholder="••••••••"
                     required
-                    minLength={8}
+                    minLength={6}
                   />
                 </div>
 
