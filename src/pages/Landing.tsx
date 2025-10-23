@@ -33,7 +33,7 @@ const Landing = () => {
             </div>
             <div className="flex items-center gap-3">
               <Link to="/auth">
-                <Button variant="ghost" size="sm">Войти</Button>
+                <Button variant="light-gradient" size="sm">Войти</Button>
               </Link>
               <Link to="/auth">
                 <Button size="sm">Начать</Button>
