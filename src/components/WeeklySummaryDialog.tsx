@@ -102,7 +102,7 @@ export const WeeklySummaryDialog = ({
             </div>
           ) : summary ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
-              <div className="rounded-lg bg-black px-3 py-2 text-sm text-foreground leading-relaxed whitespace-pre-wrap">
+              <div className="rounded-lg bg-background/90 p-4 text-sm leading-relaxed whitespace-pre-wrap text-foreground">
                 {summary}
               </div>
             </div>
