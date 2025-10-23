@@ -74,6 +74,7 @@ export const CreateNoteDialog = ({ open, onOpenChange, onCreateNote }: CreateNot
               variant="outline"
               onClick={() => onOpenChange(false)}
               disabled={isLoading}
+              className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent hover:from-white hover:to-white/90"
             >
               Отмена
             </Button>
