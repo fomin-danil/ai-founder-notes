@@ -80,7 +80,7 @@ const Landing = () => {
       </section>
 
       {/* Full Screen Features Section */}
-      <section className="min-h-screen flex items-center py-16 md:py-24 bg-muted/30">
+      <section className="min-h-screen flex items-center py-16 md:py-24 bg-muted/50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             {/* Left side - Animated Display Cards */}
