@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DisplayCards } from "@/components/DisplayCards";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+
 const Landing = () => {
-  return <div className="min-h-screen bg-background dark">
+  return (
+    <div className="min-h-screen bg-background dark">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 md:px-8">
@@ -31,11 +33,10 @@ const Landing = () => {
             </div>
             <div className="flex items-center gap-3">
               <Link to="/auth">
-                <Button variant="ghost" size="sm">Войти</Button>
+                <Button variant="light-gradient" size="sm">Войти</Button>
               </Link>
               <Link to="/auth">
-                <Button size="sm">Зарегистрировать
-              </Button>
+                <Button size="sm">Начать</Button>
               </Link>
             </div>
           </div>
@@ -88,9 +89,7 @@ const Landing = () => {
             </div>
             
             {/* Right side - Features List */}
-            <div className="order-1 lg:order-2 space-y-8 animate-fade-in" style={{
-            animationDelay: "0.2s"
-          }}>
+            <div className="order-1 lg:order-2 space-y-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">
                   Все функции для продуктивной работы
@@ -205,6 +204,8 @@ const Landing = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Landing;
