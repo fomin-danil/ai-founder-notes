@@ -27,7 +27,8 @@ export const NoteCard = ({ note, className, style }: NoteCardProps) => {
     <div
       className={cn(
         "group relative rounded-xl border border-border bg-card p-6 border-l-4",
-        "transition-all duration-200 hover:bg-accent/50 cursor-pointer",
+        "transition-all duration-300 cursor-pointer",
+        "hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:border-foreground/30",
         "animate-fade-in",
         colorClasses[note.color as keyof typeof colorClasses],
         className

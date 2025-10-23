@@ -72,22 +72,6 @@ export const DisplayCards = () => {
           );
         })}
       </div>
-      
-      {/* Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-        {sampleNotes.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setActiveIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === activeIndex 
-                ? 'bg-foreground w-6' 
-                : 'bg-foreground/30 hover:bg-foreground/50'
-            }`}
-            aria-label={`Go to card ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   );
 };
