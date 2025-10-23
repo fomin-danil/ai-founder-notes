@@ -66,8 +66,8 @@ const Landing = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link to="/auth">
-              <Button size="lg" className="w-full sm:w-auto h-11 px-8">
+            <Link to="/auth" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full h-11 px-8">
                 Начать бесплатно
               </Button>
             </Link>
