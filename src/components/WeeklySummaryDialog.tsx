@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sparkles, Loader2 } from "lucide-react";
 import {
   Dialog,
@@ -71,16 +71,16 @@ export const WeeklySummaryDialog = ({
     }
   };
 
-  const handleOpenChange = (newOpen: boolean) => {
-    if (newOpen) {
+  useEffect(() => {
+    if (open) {
+      console.log('Dialog opened, generating summary...');
       setSummary("");
       generateSummary();
     }
-    onOpenChange(newOpen);
-  };
+  }, [open]);
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
