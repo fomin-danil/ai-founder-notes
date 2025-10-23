@@ -44,9 +44,10 @@ const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative container mx-auto px-4 md:px-8 pt-24 pb-16 md:pt-32 md:pb-24">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24">
         <AnimatedBackground />
-        <div className="relative z-10 max-w-5xl mx-auto text-center animate-fade-in-up">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="relative z-10 max-w-5xl mx-auto text-center animate-fade-in-up">
           <Badge variant="secondary" className="mb-6 px-3 py-1 text-xs">
             <Sparkles className="w-3 h-3 mr-1.5" />
             Новые AI-функции: структурирование и генерация идей
@@ -73,6 +74,7 @@ const Landing = () => {
             <Button size="lg" variant="outline" className="w-full sm:w-auto h-11 px-8 bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent hover:from-white hover:to-white/90">
               Узнать больше
             </Button>
+          </div>
           </div>
         </div>
       </section>
