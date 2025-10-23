@@ -63,7 +63,7 @@ const Auth = () => {
       toast.error(error.message);
       setIsLoading(false);
     } else {
-      toast.success("Аккаунт создан! Войдите в систему.");
+      toast.success("Проверьте почту для подтверждения аккаунта!");
       setIsLoading(false);
     }
   };
