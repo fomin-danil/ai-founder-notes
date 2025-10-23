@@ -24,38 +24,48 @@ export const WeeklySummaryDialog = ({
   const [summary, setSummary] = useState("");
 
   const generateSummary = async () => {
+    console.log('generateSummary called');
     setIsGenerating(true);
     setSummary("");
 
     try {
       const { data: { session } } = await supabase.auth.getSession();
+      console.log('Session:', session ? 'exists' : 'null');
       
       if (!session) {
         toast.error("Необходимо войти в систему");
+        setIsGenerating(false);
         return;
       }
 
+      console.log('Invoking generate-weekly-summary function...');
       const { data, error } = await supabase.functions.invoke('generate-weekly-summary', {
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },
       });
 
+      console.log('Function response:', { data, error });
+
       if (error) {
         console.error('Ошибка вызова функции:', error);
-        toast.error("Ошибка генерации резюме");
+        toast.error(`Ошибка генерации резюме: ${error.message}`);
+        setIsGenerating(false);
         return;
       }
 
       if (data?.error) {
+        console.error('Error from function:', data.error);
         toast.error(data.error);
+        setIsGenerating(false);
         return;
       }
 
-      setSummary(data.summary);
+      console.log('Summary received:', data?.summary);
+      setSummary(data?.summary || 'Резюме не получено');
     } catch (error) {
-      console.error('Ошибка:', error);
-      toast.error("Произошла ошибка при генерации резюме");
+      console.error('Exception in generateSummary:', error);
+      toast.error(`Произошла ошибка: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}`);
     } finally {
       setIsGenerating(false);
     }
