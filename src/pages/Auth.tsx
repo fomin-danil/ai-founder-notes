@@ -77,7 +77,7 @@ const Auth = () => {
             <div className="w-7 h-7 rounded-md bg-foreground flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-background" />
             </div>
-            <span className="text-base font-semibold">NotesAI</span>
+            <span className="text-base font-semibold bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">NotesAI</span>
           </Link>
         </div>
       </header>
