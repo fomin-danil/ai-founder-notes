@@ -50,7 +50,7 @@ const Landing = () => {
             <ArrowRight className="w-3 h-3 ml-1.5" />
           </Badge>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">
             Управляйте идеями
             <br />
             с помощью AI
