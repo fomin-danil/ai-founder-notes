@@ -83,8 +83,8 @@ export const WeeklySummaryDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary" />
+          <DialogTitle className="flex items-center gap-2 text-white">
+            <Sparkles className="w-5 h-5 text-white" />
             AI-саммари за неделю
           </DialogTitle>
           <DialogDescription>
