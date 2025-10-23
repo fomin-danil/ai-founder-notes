@@ -67,7 +67,7 @@ const Landing = () => {
                 Начать бесплатно
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto h-11 px-8">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto h-11 px-8 bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent hover:from-white hover:to-white/90">
               Узнать больше
             </Button>
           </div>
@@ -83,7 +83,7 @@ const Landing = () => {
                 <BookOpen className="h-5 w-5" />
               </div>
             </div>
-            <h3 className="mb-2 text-lg font-semibold">Умные заметки</h3>
+            <h3 className="mb-2 text-lg font-semibold bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">Умные заметки</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Создавайте структурированные заметки с автоматической организацией и быстрым поиском.
             </p>
@@ -95,7 +95,7 @@ const Landing = () => {
                 <Brain className="h-5 w-5" />
               </div>
             </div>
-            <h3 className="mb-2 text-lg font-semibold">AI-ассистент</h3>
+            <h3 className="mb-2 text-lg font-semibold bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">AI-ассистент</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Получайте интеллектуальные подсказки для улучшения текста и генерации идей.
             </p>
@@ -107,7 +107,7 @@ const Landing = () => {
                 <Zap className="h-5 w-5" />
               </div>
             </div>
-            <h3 className="mb-2 text-lg font-semibold">Быстрый доступ</h3>
+            <h3 className="mb-2 text-lg font-semibold bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">Быстрый доступ</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Работайте на любом устройстве с синхронизацией в реальном времени.
             </p>
