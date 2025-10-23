@@ -78,7 +78,7 @@ export const CreateNoteDialog = ({ open, onOpenChange, onCreateNote }: CreateNot
             >
               Отмена
             </Button>
-            <Button type="submit" disabled={isLoading || !title.trim()}>
+            <Button type="submit" disabled={isLoading || !title.trim()} className="bg-white text-black hover:bg-white/90">
               {isLoading ? "Создание..." : "Создать"}
             </Button>
           </div>
