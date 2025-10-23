@@ -24,6 +24,28 @@ interface Note {
   created_at: string;
 }
 
+interface NoteCardWithDelete extends React.ComponentProps<typeof NoteCard> {
+  onDelete?: () => void;
+}
+
+const NoteCardWrapper = ({ note, onDelete, ...props }: NoteCardWithDelete) => {
+  return (
+    <div className="relative group">
+      <NoteCard note={note} {...props} />
+      {onDelete && (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onDelete}
+          className="absolute top-2 right-2 h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 hover:bg-destructive hover:text-destructive-foreground"
+        >
+          ×
+        </Button>
+      )}
+    </div>
+  );
+};
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,9 +69,17 @@ const Dashboard = () => {
 
   const loadNotes = async () => {
     setIsLoading(true);
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session?.user) {
+      navigate("/auth");
+      return;
+    }
+
     const { data, error } = await supabase
       .from("notes")
       .select("*")
+      .eq("user_id", session.user.id)
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -103,12 +133,37 @@ const Dashboard = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <Link to="/note/new">
-                <Button size="sm" className="gap-2 h-9">
-                  <Plus className="w-4 h-4" />
-                  <span className="hidden sm:inline">Создать</span>
-                </Button>
-              </Link>
+              <Button 
+                size="sm" 
+                className="gap-2 h-9"
+                onClick={async () => {
+                  const { data: { session } } = await supabase.auth.getSession();
+                  if (!session?.user) {
+                    toast.error("Необходимо войти в систему");
+                    return;
+                  }
+                  
+                  const { error } = await supabase
+                    .from("notes")
+                    .insert([{
+                      user_id: session.user.id,
+                      title: "Новая заметка",
+                      content: "Начните писать...",
+                      color: "blue"
+                    }]);
+                  
+                  if (error) {
+                    toast.error("Ошибка создания заметки");
+                    console.error(error);
+                  } else {
+                    toast.success("Заметка создана");
+                    loadNotes();
+                  }
+                }}
+              >
+                <Plus className="w-4 h-4" />
+                <span className="hidden sm:inline">Создать</span>
+              </Button>
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -155,17 +210,31 @@ const Dashboard = () => {
         ) : filteredNotes.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredNotes.map((note, index) => (
-              <NoteCard
+              <NoteCardWrapper
                 key={note.id}
                 note={{
                   id: note.id,
                   title: note.title,
                   content: note.content || "",
                   createdAt: new Date(note.created_at).toLocaleDateString("ru-RU"),
-                  color: note.color || "default",
+                  color: note.color || "blue",
                 }}
                 style={{
                   animationDelay: `${index * 0.05}s`,
+                }}
+                onDelete={async () => {
+                  const { error } = await supabase
+                    .from("notes")
+                    .delete()
+                    .eq("id", note.id);
+                  
+                  if (error) {
+                    toast.error("Ошибка удаления заметки");
+                    console.error(error);
+                  } else {
+                    toast.success("Заметка удалена");
+                    loadNotes();
+                  }
                 }}
               />
             ))}
