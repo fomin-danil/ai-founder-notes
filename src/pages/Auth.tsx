@@ -86,7 +86,7 @@ const Auth = () => {
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md animate-fade-in-up">
           <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold tracking-tight mb-2">Добро пожаловать</h1>
+            <h1 className="text-3xl font-bold tracking-tight mb-2 bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">Добро пожаловать</h1>
             <p className="text-sm text-muted-foreground">
               Войдите или создайте новый аккаунт
             </p>

@@ -244,7 +244,7 @@ const Dashboard = () => {
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
               <Search className="h-6 w-6 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-lg font-semibold mb-2 bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">
               {searchQuery ? "Заметки не найдены" : "У вас пока нет заметок"}
             </h3>
             <p className="text-sm text-muted-foreground">
