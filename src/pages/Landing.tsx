@@ -15,7 +15,7 @@ const Landing = () => {
                 <div className="w-7 h-7 rounded-md bg-foreground flex items-center justify-center">
                   <Sparkles className="w-4 h-4 text-background" />
                 </div>
-                <span className="text-base font-semibold">NotesAI</span>
+                <span className="text-base font-semibold bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">NotesAI</span>
               </Link>
               <nav className="hidden md:flex items-center gap-6 text-sm">
                 <Link to="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -142,7 +142,7 @@ const Landing = () => {
               <div className="w-5 h-5 rounded bg-foreground flex items-center justify-center">
                 <Sparkles className="w-3 h-3 text-background" />
               </div>
-              <span className="text-sm font-medium">NotesAI</span>
+              <span className="text-sm font-medium bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">NotesAI</span>
             </div>
             <div className="text-sm text-muted-foreground">
               © 2025 NotesAI. Создано для предпринимателей.
